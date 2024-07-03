@@ -346,11 +346,15 @@ class DealData:
         content = selector.xpath(
             '//div[@class="rich_media_content "]|//div[@class="rich_media_content"]|//div[@class="share_media"]'
         )
+        # title = (
+        #     selector.xpath('//h2[@class="rich_media_title"]/text()')
+        #     .extract_first(default="")
+        #     .strip()
+        # )
         title = (
-            selector.xpath('//h2[@class="rich_media_title"]/text()')
-            .extract_first(default="")
-            .strip()
+            selector.xpath('//*[@id="activity-name"]')[0].get().strip()
         )
+        print(title)
         account = (
             selector.xpath('//a[@id="js_name"]/text()')
             .extract_first(default="")

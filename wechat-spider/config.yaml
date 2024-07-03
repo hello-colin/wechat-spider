@@ -1,16 +1,16 @@
 mysqldb:
-  ip: "mariadb"
-  port: 3306
+  ip: 10.160.32.58
+  port: 30065
   db: test
   user: root
-  passwd: "root"
+  passwd: Passw0rd
   auto_create_tables: True # 是否自动建表 建议当表不存在是设置为true，表存在是设置为false，加快软件启动速度
 
 redisdb:
-  ip: redis
-  port: 6379
+  ip: 10.160.32.58
+  port: 31012
   db: 0
-  passwd:
+  passwd: 123456
 
 spider:
   monitor_interval: 3600 # 公众号扫描新发布文章周期时间间隔 单位秒

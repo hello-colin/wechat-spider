@@ -13,12 +13,14 @@ from mitmproxy import ctx
 
 from core.deal_data import deal_data
 
-
+import io
+import utils.tools as tools
 class WechatCapture():
 
     def response(self, flow: mitmproxy.http.HTTPFlow):
         url = flow.request.url
-
+        print(url)
+        print(flow.response.text)
         next_page = None
         try:
             if 'mp/profile_ext?action=home' in url or 'mp/profile_ext?action=getmsg' in url:  # 文章列表 包括html格式和json格式
@@ -44,7 +46,7 @@ class WechatCapture():
                 # 去掉图片
                 flow.response.text = re.sub('<img.*?>', '', flow.response.text)
 
-            elif 'mp/getappmsgext' in url:  # 阅读量 观看量
+            elif 'getappmsgext' in url:  # 阅读量 观看量
 
                 ctx.log.info('抽取阅读量 观看量')
                 deal_data.deal_article_dynamic_info(flow.request.data.content.decode('utf-8'), flow.response.text)
